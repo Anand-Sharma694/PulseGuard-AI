@@ -1,0 +1,32 @@
+{
+  "accuracy": 1.0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "training_samples": 1440,
+  "test_samples": 360,
+  "confusion_matrix": [
+    [
+      286,
+      0
+    ],
+    [
+      0,
+      74
+    ]
+  ],
+  "classes": [
+    "NORMAL",
+    "UNUSUAL_PATTERN"
+  ],
+  "features": [
+    "current_bpm",
+    "avg_bpm",
+    "min_bpm",
+    "max_bpm",
+    "std_bpm",
+    "change_bpm"
+  ],
+  "dataset": "Synthetic educational dataset",
+  "validation_note": "Not clinical validation."
+}

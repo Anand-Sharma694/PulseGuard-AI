@@ -1,0 +1,101 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PulseGuard AI — Dashboard</title><link rel="stylesheet" href="style.css"></head><body><div class="appshell"><aside class="sidebar"><a class="brand" href="/"><span>❤</span><div><b>PulseGuard AI</b><small>SMART MONITORING</small></div></a><nav><button class="active" data-page="dashboard">⌂ Dashboard</button><button data-page="analytics">✦ AI explained</button><button data-page="insights">◒ Insights & Reports</button><button data-page="live">◉ Live Command Center</button><button data-page="history">▤ My history</button><button data-page="alerts">🔔 Alerts</button><button data-page="architecture">◈ How it works</button></nav><div class="side-help"><b>New to the project?</b><p>Open <b>AI explained</b> or <b>How it works</b>. Every technical result has a plain-language explanation.</p></div></aside>
+<main><header class="apphead"><div><span class="eyebrow">YOUR HEALTH MONITORING SPACE</span><h1 id="welcome">Welcome</h1><p>Let's understand your heart-rate pattern, one reading at a time.</p></div><div class="userbox"><button id="bell" class="bell">🔔 <span id="badge">0</span></button><div><b id="uname">User</b><small id="urole">User</small></div><button id="logout">Log out</button></div></header>
+<section id="dashboard" class="page active"><div class="intro"><div><b>What you're seeing</b><span>Live simulated BPM → feature analysis → AI decision → explanation.</span></div><button id="tour">ⓘ Explain this screen</button></div>
+<div class="cards topgrid"><div class="card live"><label>LIVE HEART RATE</label><div id="bpm">-- <i>BPM</i></div><div class="gauge"><i id="gauge"></i></div><div class="limits"><span>LOW &lt;60</span><b>60–100 DEMO RANGE</b><span>HIGH &gt;100</span></div><button id="start" class="primary">▶ Start monitoring</button><button id="stop" disabled>■ End session</button></div>
+<div class="card ai"><div class="row"><div><label>AI PATTERN RESULT</label><h2 id="ai">Waiting for data</h2></div><span class="aiicon">✦</span></div><div class="risk"><span>Risk score</span><b id="risk">--</b><div><i id="riskbar"></i></div></div><p id="why">When a reading arrives, this box will explain what the system noticed in normal language.</p><div class="chips"><span>Random Forest</span><span>Isolation Forest</span><span>Explainable AI</span></div></div>
+<div class="card confidence"><label>AI CONFIDENCE</label><strong id="conf">--</strong><p>How strongly the classifier supports its current pattern label.</p><div class="line"><i id="confbar"></i></div><hr><label>SESSION</label><h3 id="session">Not started</h3></div></div>
+<div class="cards four"><div class="card stat"><label>RECENT AVERAGE</label><b id="avg">--</b><small>BPM</small></div><div class="card stat"><label>MINIMUM</label><b id="min">--</b><small>BPM</small></div><div class="card stat"><label>MAXIMUM</label><b id="max">--</b><small>BPM</small></div><div class="card stat"><label>READINGS</label><b id="count">0</b><small>This session</small></div></div>
+<div class="cards twocol"><div class="card chart"><div class="head"><div><label>LIVE TREND</label><h2>Heart-rate timeline</h2></div><button id="clear">Clear view</button></div><canvas id="chart" width="1000" height="370"></canvas></div><div class="card"><label>TRY THE SYSTEM</label><h2>See three different decisions</h2><p class="muted">These are demonstration values so you can explain the project during a presentation.</p><div class="demo"><button data-v="75">Normal · 75</button><button data-v="110">High · 110</button><button data-v="55">Low · 55</button></div><div class="plain-card"><b>What does “risk” mean?</b><p>It is a software demonstration score that combines threshold status, unusual variation and the AI pattern result. It is <b>not</b> a medical risk prediction.</p></div><a class="export" href="/api/export.csv">⇩ Export my monitoring data</a></div></div></section>
+
+<section id="analytics" class="page"><div class="sectiontitle"><span class="eyebrow">PLAIN-LANGUAGE AI</span><h2>AI explained</h2><p>You can understand this page without knowing machine learning.</p></div><div class="cards four"><div class="card stat"><label>ACCURACY</label><b id="m1">--</b><small>Synthetic test data</small></div><div class="card stat"><label>PRECISION</label><b id="m2">--</b><small>Synthetic test data</small></div><div class="card stat"><label>RECALL</label><b id="m3">--</b><small>Synthetic test data</small></div><div class="card stat"><label>F1 SCORE</label><b id="m4">--</b><small>Synthetic test data</small></div></div><div class="cards twocol"><div class="card"><h2>1. Random Forest</h2><p>Think of it as many small decision trees voting on the same heart-rate pattern. It learns from examples labelled <b>normal</b> or <b>unusual</b>.</p><div class="simpleflow"><span>Features</span>→<span>Many trees</span>→<b>Majority vote</b></div></div><div class="card"><h2>2. Isolation Forest</h2><p>It learns what the normal feature space looks like. A pattern that is easy to separate from that normal region receives an anomaly signal.</p><div class="simpleflow"><span>Normal profile</span>→<span>Isolation</span>→<b>Anomaly signal</b></div></div></div><div class="card"><h2>3. How the final answer is produced</h2><div class="bigflow"><span>Heart-rate values</span><b>→</b><span>6 features</span><b>→</b><span>Two AI signals</span><b>→</b><span>Threshold rules</span><b>→</b><strong>Result + confidence + explanation</strong></div><div class="notice"><b>Important:</b> The displayed model metrics come from synthetic educational data. They demonstrate the ML engineering pipeline; they are not clinical validation.</div></div></section>
+
+
+<section id="alerts" class="page"><div class="sectiontitle"><span class="eyebrow">ALERT CENTER</span><h2>Notifications</h2><p>Every abnormal demonstration event is recorded here so the user does not have to watch the dashboard continuously.</p></div>
+<div class="intro"><div><b>How this works</b><span>Threshold or AI anomaly → notification event → stored in your account → visible here.</span></div><button id="readall">Mark all as read</button></div>
+<div id="alertslist" class="alertslist"></div></section>
+
+
+<section id="insights" class="page">
+  <div class="sectiontitle">
+    <span class="eyebrow">PERSONAL ANALYTICS</span>
+    <h2>Insights & Reports</h2>
+    <p>Turn stored monitoring events into a clear summary you can understand, review and present.</p>
+  </div>
+  <div class="cards four">
+    <div class="card stat"><label>ALL READINGS</label><b id="an-total">--</b><small>Stored for this account</small></div>
+    <div class="card stat"><label>AVERAGE BPM</label><b id="an-avg">--</b><small>Across stored readings</small></div>
+    <div class="card stat"><label>ABNORMAL EVENTS</label><b id="an-abnormal">--</b><small>Threshold-based demo events</small></div>
+    <div class="card stat"><label>AI UNUSUAL EVENTS</label><b id="an-ai">--</b><small>ML pattern flags</small></div>
+  </div>
+  <div class="cards twocol">
+    <div class="card">
+      <div class="head"><div><label>SESSION INSIGHT</label><h2>What the data says</h2></div><span class="aiicon">✦</span></div>
+      <div class="insight-grid">
+        <div><span>Range</span><b id="an-range">--</b></div>
+        <div><span>Average risk</span><b id="an-risk">--</b></div>
+        <div><span>AI confidence</span><b id="an-conf">--</b></div>
+        <div><span>Pattern stability</span><b id="an-stability">--</b></div>
+      </div>
+      <div class="notice"><b>How to read this:</b> these are software analytics over your stored demonstration readings. They are not clinical measurements or medical predictions.</div>
+    </div>
+    <div class="card">
+      <label>REPORTING</label>
+      <h2>Take the project beyond the screen</h2>
+      <p class="muted">Generate a clean PDF summary containing account information, monitoring statistics and recent AI events.</p>
+      <a class="primary bigbtn reportbtn" href="/api/report.pdf">⇩ Download PDF report</a>
+      <p class="muted reporthint">This is useful for project demonstrations, documentation and portfolio screenshots.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="head"><div><label>EVENT TIMELINE</label><h2>Recent monitoring activity</h2></div><button id="refresh-insights">↻ Refresh</button></div>
+    <canvas id="insightChart" width="1100" height="330"></canvas>
+  </div>
+</section>
+
+
+<section id="live" class="page">
+  <div class="sectiontitle">
+    <span class="eyebrow">REAL-TIME OPERATIONS</span>
+    <h2>Live Command Center</h2>
+    <p>A focused view of the current monitoring session, recent readings, AI state and alert activity.</p>
+  </div>
+
+  <div class="cards four">
+    <div class="card stat"><label>CURRENT BPM</label><b id="live-bpm">--</b><small id="live-state">Waiting for a session</small></div>
+    <div class="card stat"><label>AI STATE</label><b id="live-ai">--</b><small id="live-confidence">Model confidence --</small></div>
+    <div class="card stat"><label>RISK SCORE</label><b id="live-risk">--</b><small>Demonstration score / 100</small></div>
+    <div class="card stat"><label>SESSION READINGS</label><b id="live-count">0</b><small id="live-session">No active session</small></div>
+  </div>
+
+  <div class="cards twocol">
+    <div class="card">
+      <div class="head"><div><label>LIVE TREND</label><h2>Heart-rate stream</h2></div><span id="live-dot" class="live-dot">●</span></div>
+      <canvas id="liveChart" width="1100" height="330"></canvas>
+      <div class="legend"><span>Threshold guide: 60–100 BPM demonstration range</span></div>
+    </div>
+
+    <div class="card">
+      <label>AI INTERPRETATION</label>
+      <h2 id="live-title">Waiting for data</h2>
+      <p id="live-explanation" class="muted">Start a monitoring session from the Dashboard. New readings will appear here automatically.</p>
+      <div class="decision-box">
+        <div><span>Rule decision</span><b id="live-rule">--</b></div>
+        <div><span>AI decision</span><b id="live-ai2">--</b></div>
+        <div><span>Risk</span><b id="live-risk2">--</b></div>
+      </div>
+      <div class="notice"><b>Responsible-use note:</b> this is an educational software prototype using simulated readings. It is not a medical diagnostic system.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="head"><div><label>RECENT EVENTS</label><h2>Session activity</h2></div><button id="live-refresh">↻ Refresh</button></div>
+    <div id="live-events" class="live-events"><div class="muted">No readings yet.</div></div>
+  </div>
+</section>
+
+<section id="history" class="page"><div class="head"><div><span class="eyebrow">YOUR DATA</span><h2>Monitoring history</h2><p>Only the account currently signed in is shown here.</p></div><div><button id="refresh">↻ Refresh</button><a class="primary download" href="/api/export.csv">Export CSV</a></div></div><div class="card table"><table><thead><tr><th>Time</th><th>BPM</th><th>Threshold</th><th>AI</th><th>Confidence</th><th>Risk</th><th>Why?</th></tr></thead><tbody id="tbody"></tbody></table></div></section>
+
+<section id="architecture" class="page"><div class="sectiontitle"><span class="eyebrow">SYSTEM MAP</span><h2>How PulseGuard works</h2><p>This page connects every button you see to the technology behind it.</p></div><div class="arch"><div><b>1</b><strong>Heart-rate source</strong><small>Simulator now<br>ESP32/MAX30102 later</small></div><b>→</b><div><b>2</b><strong>Feature engine</strong><small>Average · range<br>variation · change</small></div><b>→</b><div><b>3</b><strong>AI engine</strong><small>Random Forest<br>Isolation Forest</small></div><b>→</b><div><b>4</b><strong>Decision layer</strong><small>Threshold + risk<br>explanation</small></div><b>→</b><div><b>5</b><strong>User dashboard</strong><small>History · export<br>visualization</small></div></div><div class="cards twocol"><div class="card"><h2>Why the project is built this way</h2><p><b>Separation of concerns.</b> Data collection, AI analysis, storage and presentation are separate layers. That makes the system easier to test, extend and connect to real hardware.</p><p><b>Hardware-independent today.</b> The laptop simulator proves the software architecture before hardware is purchased.</p></div><div class="card"><h2>What can be added next</h2><ul><li>ESP32 + MAX30102 sensor acquisition</li><li>Blynk or another cloud notification layer</li><li>Secure production deployment</li><li>Validated biomedical datasets</li><li>Formal privacy, security and regulatory controls</li></ul></div></div><div class="notice"><b>Responsible use:</b> PulseGuard AI is an educational prototype. It does not diagnose conditions or provide treatment advice. The 60/100 BPM values are demonstration thresholds from the project brief.</div></section>
+<footer>PulseGuard AI · Smart heart-rate pattern monitoring · Educational prototype · Not a medical device</footer></main></div>
+<div id="modal" class="modal"><div class="modalbox"><button id="close" class="x">×</button><span class="eyebrow">QUICK TOUR</span><h2>How to read this dashboard</h2><div class="touritem"><b>① Live BPM</b><span>The current simulated heart-rate value.</span></div><div class="touritem"><b>② AI result</b><span>The machine-learning models compare the recent pattern with learned examples.</span></div><div class="touritem"><b>③ Risk score</b><span>A transparent software score combining thresholds, variation and AI output.</span></div><div class="touritem"><b>④ Explanation</b><span>A plain-language reason for the AI decision.</span></div><button id="gotit" class="primary bigbtn">Got it — start exploring</button></div></div>
+<script src="app.js"></script></body></html>
