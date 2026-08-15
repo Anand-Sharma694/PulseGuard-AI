@@ -1,4 +1,16 @@
-# PulseGuard AI — FINAL STABLE
+# ❤️ PulseGuard AI
+
+AI-powered heart-rate monitoring and anomaly detection system.
+
+## 🚀 Live Demo
+
+**[Open PulseGuard AI Live Demo](https://pulseguard-ai-j3rg.onrender.com)**
+
+> The live demo uses simulated heart-rate data. Physical heartbeat hardware is not required for the software demonstration.
+
+## 📂 GitHub Repository
+
+**[View Source Code](https://github.com/Anand-Sharma694/PulseGuard-AI)**
 
 A final-year CSE educational AI health-monitoring prototype with authentication, real-time simulated heart-rate monitoring, conservative AI pattern analysis, threshold alerts, notification center, live command center, history, analytics, CSV export and PDF reporting.
 
