@@ -1,3 +1,178 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Create account — PulseGuard AI</title><link rel="stylesheet" href="style.css"></head><body class="authbody"><div class="authwrap"><a class="brand dark" href="/"><span>❤</span><b>PulseGuard AI</b></a><div class="authcard"><span class="eyebrow">PERSONAL DASHBOARD</span><h1>Create your account</h1><p>Your name will appear on your private local dashboard. This demo stores data only in the local project database.</p><form id="form"><label>Your name<input id="name" required></label><label>Username<input id="username" required minlength="3"></label><label>Password<input id="password" type="password" required minlength="6"></label><div id="error" class="error"></div><button class="primary bigbtn" type="submit">Create my dashboard →</button></form><p class="switch">Already have an account? <a href="/login">Sign in</a></p></div></div><script>
-const f=document.getElementById("form"),e=document.getElementById("error");f.onsubmit=async x=>{x.preventDefault();let r=await fetch("/api/auth/register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:name.value,username:username.value,password:password.value})});let d=await r.json();if(r.ok)location="/app";else e.textContent=d.error};
-</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account — PulseGuard AI</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="authbody">
+
+    <div class="authwrap">
+
+        <a class="brand dark" href="/">
+            <span>❤</span>
+            <b>PulseGuard AI</b>
+        </a>
+
+        <div class="authcard">
+
+            <span class="eyebrow">PERSONAL DASHBOARD</span>
+
+            <h1>Create your account</h1>
+
+            <p>
+                Create your personal PulseGuard AI account.
+                Your monitoring data is associated with your account.
+            </p>
+
+            <form id="registerForm">
+
+                <!-- Name -->
+                <label for="name">
+                    Your name
+                </label>
+
+                <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Enter your name"
+                    autocomplete="name"
+                    minlength="2"
+                    required
+                >
+
+                <!-- Username -->
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    placeholder="Choose a username"
+                    autocomplete="username"
+                    minlength="3"
+                    required
+                >
+
+                <!-- Password -->
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Create a password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
+
+                <!-- Error message -->
+                <div
+                    id="error"
+                    class="error"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+                <!-- Submit -->
+                <button
+                    id="registerButton"
+                    class="primary bigbtn"
+                    type="submit"
+                >
+                    Create my dashboard →
+                </button>
+
+            </form>
+
+            <p class="switch">
+                Already have an account?
+                <a href="/login">Sign in</a>
+            </p>
+
+        </div>
+
+    </div>
+
+    <script>
+        const registerForm = document.getElementById("registerForm");
+        const nameInput = document.getElementById("name");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+        const errorBox = document.getElementById("error");
+        const registerButton = document.getElementById("registerButton");
+
+        registerForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            errorBox.textContent = "";
+
+            const name = nameInput.value.trim();
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value;
+
+            if (name.length < 2) {
+                errorBox.textContent = "Please enter your name.";
+                return;
+            }
+
+            if (username.length < 3) {
+                errorBox.textContent = "Username must contain at least 3 characters.";
+                return;
+            }
+
+            if (password.length < 6) {
+                errorBox.textContent = "Password must contain at least 6 characters.";
+                return;
+            }
+
+            registerButton.disabled = true;
+            registerButton.textContent = "Creating account...";
+
+            try {
+                const response = await fetch("/api/auth/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        username: username,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    window.location.href = "/app";
+                    return;
+                }
+
+                errorBox.textContent =
+                    data.error || "Unable to create account.";
+
+            } catch (error) {
+                console.error("Registration error:", error);
+
+                errorBox.textContent =
+                    "Unable to connect to the server. Please try again.";
+            }
+
+            registerButton.disabled = false;
+            registerButton.textContent = "Create my dashboard →";
+        });
+    </script>
+
+</body>
+</html>
