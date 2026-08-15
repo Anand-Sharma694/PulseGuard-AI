@@ -80,13 +80,36 @@ def db_write_with_retry(sql, params=(), retries=8):
 init_db()
 
 def seed_demo():
-    c=con()
-    row=c.execute("SELECT id FROM users WHERE username=?",("demo",)).fetchone()
-    if not row:
-        c.execute("INSERT INTO users(name,username,password_hash,role,created_at) VALUES(?,?,?,?,?)",
-                  ("Demo User","demo",generate_password_hash("pulse123"),"USER",datetime.now().isoformat(timespec="seconds")))
-        c.commit()
+    c = con()
+
+    accounts = [
+        ("Demo User", "demo", "pulse123"),
+        ("Anand", "anandsharma", "PulseGuard@2026"),
+    ]
+
+    for name, username, password in accounts:
+        row = c.execute(
+            "SELECT id FROM users WHERE username=?",
+            (username,)
+        ).fetchone()
+
+        if not row:
+            c.execute(
+                """INSERT INTO users
+                (name, username, password_hash, role, created_at)
+                VALUES (?, ?, ?, ?, ?)""",
+                (
+                    name,
+                    username,
+                    generate_password_hash(password),
+                    "USER",
+                    datetime.now().isoformat(timespec="seconds")
+                )
+            )
+
+    c.commit()
     c.close()
+
 
 seed_demo()
 
